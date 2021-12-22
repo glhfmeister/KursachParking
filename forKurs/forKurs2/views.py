@@ -366,7 +366,7 @@ class Pay(View):
             context["err"] = "Одно или несколько полей незаполненно"
             context["price"] = price
             return render(request, 'payed.html', context=context)
-        if len(entered_num_card) == 12 and int(entered_num_card) > 0 and len(entered_year) == 4 and int(entered_year) > 0 and len(entered_cvc) == 3 and int(entered_cvc) > 0:
+        if len(entered_num_card) == 16 and int(entered_num_card) > 0 and len(entered_year) == 4 and int(entered_year) > 0 and len(entered_cvc) == 3 and int(entered_cvc) > 0:
             pk_us = Usero.objects.filter(mailo=request.session.get("usero_mailo"))[0].pk
             Orders.objects.filter(usero_idusero=pk_us).delete()
             return HttpResponseRedirect("../main")
