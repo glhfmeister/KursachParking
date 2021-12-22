@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head> <!-- Техническая информация о документе -->
+        <meta charset="UTF-8"> <!-- Определяем кодировку символов документа -->
+        <title>ArKing</title> <!-- Задаем заголовок документа -->
+        <link rel="stylesheet" href="{% static 'css/style_arend_place.css' %}"> <!-- Подключаем внешнюю таблицу стилей -->
+        <script src="script.js"></script> <!-- Подключаем сценарии -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="../main"><img src="{% static '/img/logo-garage.png' %}" class="logo"></a>
+
+            {% if mail_user != None %}
+                <a href="../person_page">
+                    <div class="forAllPers">
+
+                        <div class="obj">
+                            <img class="personal" src="{% static 'img/personal.png' %}">
+                        </div>
+                        <div class="obj">
+                            <p class="textPersonal">
+                                {{ mail_user }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            {% else %}
+                <a href="enter">
+                    <div class="forAllPers">
+
+                        <div class="obj">
+                            <img class="personal" src="{% static 'img/personal.png' %}">
+                        </div>
+                        <div class="obj">
+                            <p class="textPersonal">
+                                Войти
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            {% endif %}
+        </header>
+        {% if alr_occup == 'True' %}
+            <div class="occup">
+                <h2>
+                    Вы уже арендуете место
+                </h2>
+                <div>
+                    <a href="../person_page">
+                        Прежде окончите текущую аренду
+                    </a>
+                </div>
+
+            </div>
+        {% else %}
+            <div>
+                <form method="POST" action="" name="add_park">
+                    {% csrf_token %}
+                    <input class="button_next" type="submit" value="Начать аренду">
+                </form>
+            </div>
+        {% endif %}
+
+    </body>
+</html>

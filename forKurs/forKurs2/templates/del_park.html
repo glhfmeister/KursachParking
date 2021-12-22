@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> <!-- Определяем кодировку символов документа -->
+        <title>ArKing</title> <!-- Задаем заголовок документа -->
+        <link rel="stylesheet" href="{% static 'css/del_park.css' %}"><!-- Подключаем внешнюю таблицу стилей -->
+        <script src="script.js"></script> <!-- Подключаем сценарии -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="../main"><img src="{% static '/img/logo-garage.png' %}" class="logo">
+            </a>
+                <a href="../person_page">
+                    <div class="forAllPers">
+
+                        <div class="obj">
+                            <img class="personal" src="{% static 'img/personal.png' %}">
+                        </div>
+                        <div class="obj">
+                            <p class="textPersonal">
+                                {{ mail_user }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+        </header>
+        <div>
+            <div class="blockForH2">
+                <h2>
+                    Вы точно хотите удалить?
+                </h2>
+            </div>
+            <div class="inputs">
+                <div class="twoBut">
+                    <form method="post" action="" name="del">
+                        {% csrf_token %}
+                        <input class="button_next" type="submit" value="Отмена">
+                    </form>
+                </div>
+                <div class="twoBut">
+                    <form method="post" action="" name="del">
+                        {% csrf_token %}
+                        <input class="button_next" type="submit" value="Удалить">
+                    </form>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </body>
+</html>

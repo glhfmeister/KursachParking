@@ -1,0 +1,39 @@
+"""forKurs URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from django.contrib.auth.views import LogoutView
+from forKurs2.views import *
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', First_Page.as_view()),
+    path('main', MainPage.as_view()),
+    path('adm', Adm.as_view()),
+    path('del_park/<int:id>', Del_park.as_view()),
+    path('registr', Register.as_view()),
+    path('enter', Enter.as_view()),
+    path('choice_address', Choice_ad.as_view()),
+    path('choice_place/<int:id>', Choice_pl.as_view()),
+    path('arend_place/<int:id>', Arend_p.as_view()),
+
+    path('person_page', Person_pg.as_view()),
+    path('end_arend', End_a.as_view()),
+    path('payed', Pay.as_view()),
+
+
+
+]

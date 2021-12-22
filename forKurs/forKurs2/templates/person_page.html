@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head> <!-- Техническая информация о документе -->
+        <meta charset="UTF-8"> <!-- Определяем кодировку символов документа -->
+        <title>ArKing</title> <!-- Задаем заголовок документа -->
+        <link rel="stylesheet" href="{% static 'css/style_person_page.css' %}"><!-- Подключаем внешнюю таблицу стилей -->
+        <script src="script.js"></script> <!-- Подключаем сценарии -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+        </style>
+    </head>
+<body>
+    <header>
+        <a href="main"><img src="{% static '/img/logo-garage.png' %}" class="logo">
+        </a>
+            <a href="person_page">
+                <div class="forAllPers">
+
+                    <div class="obj">
+                        <img class="personal" src="{% static 'img/personal.png' %}">
+                    </div>
+                    <div class="obj">
+                        <p class="textPersonal">
+                            {{ mail_user }}
+                        </p>
+                    </div>
+                </div>
+            </a>
+    </header>
+    {% if admin == 'True' %}
+        <div class="admin">
+            <div class="forCentr">
+                <a href="adm" class="admLink">
+                    Ссылка на админскую страницу
+                </a>
+            </div>
+
+        </div>
+    {% else %}
+        <!--- Заказы --->
+        <div class="forOrd">
+            <!--- Оглавление для отмены заказа --->
+            <div class="orders">
+                <div class="orderOgl">
+                    <p style="width:100%; display: inline-block;">
+                        Активный заказ
+                    </p>
+                </div>
+            </div>
+
+
+            <!--- Для отмены заказа --->
+            {% if ord == 'False' %}
+                <div class="noOrd">
+                    <p>
+                        Активного заказа нет
+                    </p>
+                </div>
+            {% else %}
+                <div style="width:90%; height:50px; margin-left:5%; margin-right:5%; display: inline-block;">
+                    <div class="address">
+                        <p class="textAddress">
+                            {{ord}}
+                        </p>
+                    </div>
+                    <div class="button">
+                        <form method="post" action="" style="height:100%;">
+                        {% csrf_token %}
+                        <input class="stop" name="stop_arend" type="submit" value="Прекратить аренду">
+                    </form>
+
+                    </div>
+
+
+                </div>
+            {% endif %}
+
+
+        </div>
+
+    {% endif %}
+
+    <hr>
+    <!--- Кнопка для logout --->
+    <div style="width:80%; height:30px; margin-left:10%;">
+        <form method="post" action="" name="logout">
+            {% csrf_token %}
+            <input class="exit" type="submit" value="Выйти из аккаунта">
+        </form>
+    </div>
+
+</body>
+</html>

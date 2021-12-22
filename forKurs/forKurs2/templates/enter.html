@@ -1,0 +1,44 @@
+<!DOCTYPE html> <!-- Объявление формата документа -->
+{% load static %}
+<html>
+    <head> <!-- Техническая информация о документе -->
+        <meta charset="UTF-8"> <!-- Определяем кодировку символов документа -->
+        <title>ArKing</title> <!-- Задаем заголовок документа -->
+        <link rel="stylesheet" href="{% static 'css/style_enter.css' %}"> <!-- Подключаем внешнюю таблицу стилей -->
+        <script src="script.js"></script> <!-- Подключаем сценарии -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
+        </style>
+    </head>
+    <body> <!-- Основная часть документа -->
+        <div class="undoH2" style="height:250px; width: 100%; margin-bottom: 70px;">
+            <h2>
+                Войти
+            </h2>
+        </div>
+        <form method="post" action="" name="login_user">
+            {% csrf_token %}
+            <div style="width: 100%;height: 532px; display: flex; flex-direction: column; align-items: center;">
+                <input name="Enter_mail" type="text" placeholder="Email" class="input-1"/>
+                <input name="Enter_pass" type="password" placeholder="Password" class="input-1" style="margin-bottom: 100px;"/>
+                <div>
+                    <div style="width:100%; height:100%; display: flex; justify-content: center; flex-direction: column;">
+                        <div>
+                            <a style="width: 597px; height: 64px;" href="main">
+                                <input name="guruweba_example_button" type="submit" value="Войти" class="input_button"/>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="registr" class="forRegistr">
+                                Еще нет аккаунта?
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

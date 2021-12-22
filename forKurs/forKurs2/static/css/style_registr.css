@@ -1,0 +1,97 @@
+body{
+    background-color: #0078A6;
+    margin: 0;
+    padding: 0;
+}
+
+.undoH2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2{
+    height: 72px;
+
+    margin-top: 50px;
+
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 64px;
+    line-height: 72px;
+    /* identical to box height */
+
+
+    color: #00CE79;
+}
+
+.inputs{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    width:55%;
+}
+
+.input-1{
+
+    width: 100%;
+    height: 64px;
+
+    margin-bottom: 50px;
+
+    background: #FFFFFF;
+    border: 2px solid #C4C4C4;
+    box-sizing: border-box;
+
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 40px;
+
+    color: #808080;
+
+}
+::placeholder { /* Most modern browsers support this now. */
+    color:    #C4C4C4;
+ }
+
+ .for_checkbox{
+     width: 20px;
+     height: 20px;
+ }
+
+ .textCheckbox{
+    height: 60px;
+    width: 597px;
+
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 40px;
+    
+    color: #DEDEDE;
+ }
+ .input_button{
+     position: relative;
+
+    width: 597px;
+    height: 64px;
+    
+    background: #00CE79;
+    border: 2px solid #C4C4C4;
+    box-sizing: border-box;
+
+    font-family: Sansation;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 54px;
+    /* identical to box height */
+
+
+    color: #FFFFFF;
+ }

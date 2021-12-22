@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head> <!-- Техническая информация о документе -->
+        <meta charset="UTF-8"> <!-- Определяем кодировку символов документа -->
+        <title>ArKing</title> <!-- Задаем заголовок документа -->
+        <link rel="stylesheet" href="{% static 'css/style_payed.css' %}"> <!-- Подключаем внешнюю таблицу стилей -->
+        <script src="script.js"></script> <!-- Подключаем сценарии -->
+
+    </head>
+<body>
+    <p style="text-align: center; margin-top:300px;">
+        {{err}}
+    </p>
+
+
+    <div class="inputs">
+        <form method="POST" action="" name="add_park">
+            {% csrf_token %}
+            <input type="number" name="num" placeholder="Номер карты" class="input-1"/>
+            <input type="number" name="year" placeholder="Год/Месяц" class="input-1"/>
+            <input type="number" name="cvc" placeholder="CVC" class="input-1"/>
+
+            <input class="button_next" type="submit" value="Оплатить">
+            <p style="margin-left:64.5%;">
+                Цена:
+                {{price}}
+                руб.
+            </p>
+        </form>
+    </div>
+</body>
+</html>

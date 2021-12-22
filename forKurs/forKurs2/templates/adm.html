@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> <!-- Определяем кодировку символов документа -->
+        <title>ArKing</title> <!-- Задаем заголовок документа -->
+        <link rel="stylesheet" href="{% static 'css/style_administr.css' %}"><!-- Подключаем внешнюю таблицу стилей -->
+        <script src="script.js"></script> <!-- Подключаем сценарии -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Play:wght@700&display=swap');
+        </style>
+    </head>
+    <body>
+        <header>
+            <a href="main"><img src="{% static '/img/logo-garage.png' %}" class="logo">
+            </a>
+                <a href="person_page">
+                    <div class="forAllPers">
+
+                        <div class="obj">
+                            <img class="personal" src="{% static 'img/personal.png' %}">
+                        </div>
+                        <div class="obj">
+                            <p class="textPersonal">
+                                {{ mail_user }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+        </header>
+        <div>
+            <div class="blockForH2">
+                <h2>
+                    Изменить цену за аренду
+                </h2>
+            </div>
+
+            <div class="inputs">
+                <form method="POST" action="" name="add_park">
+                    {% csrf_token %}
+                    <input type="text" name="price" placeholder="Price" class="change_price"/>
+                    <div>
+                        <h3 class="err">
+                            {{ err1 }}
+                        </h3>
+                    </div>
+                    <input class="button_next" type="submit" value="Добавить">
+                </form>
+            </div>
+
+        </div>
+        <div>
+            <div class="blockForH2">
+                <h2>
+                    Добавить новую парковку
+                </h2>
+            </div>
+
+            <div class="inputs">
+                <form method="POST" action="" name="add_park">
+                    {% csrf_token %}
+                    <input type="text" name="city" placeholder="City" class="input-1"/>
+                    <input type="text" name="address" placeholder="Address" class="input-1"/>
+                    <input type="text" name="quanity" placeholder="quanityPlaces" class="input-1"/>
+                    <h3 class="err">
+                        {{ err2 }}
+                    </h3>
+                    <input class="button_next" type="submit" value="Добавить">
+                </form>
+            </div>
+
+        </div>
+        <div>
+            <div class="blockForH2">
+                <h2>
+                    Удалить существующую парковку
+                </h2>
+            </div>
+            <div>
+                <div class="allAddr">
+                    <div class="every_addr">
+                        <form method="POST" action="" name="choice_addr">
+                            {%for city in cityes%}
+                                <div style=" margin-top: 20px; margin-bottom: 20px; color: #00BAFF;">
+                                    <span>
+                                        {{city.FullNameCity}}
+                                    </span>
+                                </div>
+                                {%for address in addreses%}
+                                    {% if city.pk == address.city_id.pk %}
+                                    <div>
+                                        <a style="width: 597px; height: 64px;" href="del_park/{{ address.pk }}">
+                                            <input name="button_choice_addr" type="button" value="{{city.FullNameCity}} {{address.FullStreet}}" class="input_button" />
+
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                {%endfor%}
+                            {%endfor%}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
