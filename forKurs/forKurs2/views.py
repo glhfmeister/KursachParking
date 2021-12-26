@@ -61,6 +61,12 @@ class Register(View):
         elif not password:
             context["error_message"] = "Вы не ввели пароль"
             return render(request, 'registr.html', context=context)
+        elif phone.find(" ") != -1:
+            context["error_message"] = "В номере не могут быть пробельные символы"
+            return render(request, 'registr.html', context=context)
+        elif password.find(" ") != -1:
+            context["error_message"] = "В пароле не могут быть пробельные символы"
+            return render(request, 'registr.html', context=context)
         else:
             if check_mailo_exist(mail) == 1 and check_phone_exist(phone) == 1:
                 add_user(mail, phone, password)
@@ -119,10 +125,6 @@ class Person_pg(View):
             print (d2)
         except:
             print("it's admin")
-        #d3 = d2 - d1
-        #print(d3)
-
-
 
         ord = check_user_in_order(ord)
         print (ord)
@@ -136,13 +138,13 @@ class Person_pg(View):
         }
         return render(request, 'person_page.html', context=context)
     def post(self, request):
-        context = {}
         if request.method == "POST" and 'stop_arend' in request.POST:
             usero_id = request.session.get("usero_pk")
             return HttpResponseRedirect("../payed")
 
         else:
             try:
+                #Выйти из аккаунта
                 request.session.pop("usero_mailo")
                 request.session.pop("usero_pk")
                 request.session.pop("user")
@@ -190,7 +192,10 @@ class Adm(View):
                 context["err2"] = "Вы не ввели количество мест"
                 return render(request, 'adm.html', context=context)
             if int(entered_quan) < 1:
-                context["err2"] = "Rоличество мест должно быть положительным"
+                context["err2"] = "Количество мест должно быть положительным"
+                return render(request, 'adm.html', context=context)
+            if entered_quan.find(" ") != -1:
+                context["err2"] = "Пробельных символов быть не может"
                 return render(request, 'adm.html', context=context)
             print(entered_city, entered_addr, entered_quan)
             add_parking(entered_city, entered_addr, entered_quan)
@@ -218,7 +223,9 @@ class Adm(View):
                 if int(newPrice) < 0:
                     context["err1"] = "Цена должна быть положительной"
                     return render(request, 'adm.html', context=context)
-
+                if newPrice.find(" ") != -1:
+                    context["err1"] = "Пробельных символов быть не может"
+                    return render(request, 'adm.html', context=context)
                 oldPrice = priceo.objects.all()[0]
                 oldPrice.price = newPrice
                 oldPrice.save()
@@ -257,13 +264,6 @@ class Del_park(View):
             ci = City.objects.filter(pk=id_c)
             print(ci)
             ci.delete()
-
-        context = {
-            "cityes": City.objects.all(),
-            "addreses": Street.objects.all(),
-            'mail_user': request.session.get("usero_mailo"),
-            'admin': request.session.get("admin")
-        }
 
         return HttpResponseRedirect("../adm")
 
@@ -330,7 +330,6 @@ class Arend_p(View):
             }
         return render(request, 'arend_place.html', context=context)
     def post(self,request, id):
-        context={}
         print (request.session.get("id_park"))
         time = datetime.now()
 
@@ -339,11 +338,7 @@ class Arend_p(View):
 
 class End_a(View):
     def post(self, request):
-        mail = request.session.get("usero_mailo")
-        context = {
-            'mail_user': mail,
-        }
-        return render(request, 'payed.html', context=context)
+        return HttpResponseRedirect("../payed.html")
 class Pay(View):
     def get(self, request):
         pk_us = Usero.objects.filter(mailo=request.session.get("usero_mailo"))[0].pk

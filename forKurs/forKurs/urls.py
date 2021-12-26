@@ -33,7 +33,4 @@ urlpatterns = [
     path('person_page', Person_pg.as_view()),
     path('end_arend', End_a.as_view()),
     path('payed', Pay.as_view()),
-
-
-
 ]
