@@ -254,6 +254,9 @@ footer{
   position: absolute;
   top: 50px;
   left: 750px;
+
+  margin: 36px;
+
   width: 50%;
   height: 150px;
   text-align: center;
